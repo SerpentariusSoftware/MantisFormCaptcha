@@ -1,0 +1,33 @@
+<?php
+/**
+ * Language File - English
+ */
+
+$s_plugin_FormCaptcha_title = 'Form Captcha';
+$s_plugin_FormCaptcha_description = 'Adds a Cloudflare Turnstile / hCaptcha / Google reCAPTCHA verification challenge to the login, registration, lost password and password change forms.';
+
+$s_plugin_FormCaptcha_config_title = 'Form Captcha Configuration';
+$s_plugin_FormCaptcha_provider = 'Captcha Provider';
+$s_plugin_FormCaptcha_provider_turnstile = 'Cloudflare Turnstile';
+$s_plugin_FormCaptcha_provider_hcaptcha = 'hCaptcha';
+$s_plugin_FormCaptcha_provider_recaptcha = 'Google reCAPTCHA';
+
+$s_plugin_FormCaptcha_turnstile_site_key = 'Turnstile Site Key';
+$s_plugin_FormCaptcha_turnstile_secret_key = 'Turnstile Secret Key';
+$s_plugin_FormCaptcha_hcaptcha_site_key = 'hCaptcha Site Key';
+$s_plugin_FormCaptcha_hcaptcha_secret_key = 'hCaptcha Secret Key';
+$s_plugin_FormCaptcha_recaptcha_site_key = 'reCAPTCHA Site Key';
+$s_plugin_FormCaptcha_recaptcha_secret_key = 'reCAPTCHA Secret Key';
+
+$s_plugin_FormCaptcha_enable_login = 'Enable on Login Form';
+$s_plugin_FormCaptcha_enable_register = 'Enable on Registration Form';
+$s_plugin_FormCaptcha_enable_password_change = 'Enable on Password Change Form';
+$s_plugin_FormCaptcha_enable_lost_password = 'Enable on Lost Password Form';
+
+$s_plugin_FormCaptcha_option_on = 'ON';
+$s_plugin_FormCaptcha_option_off = 'OFF';
+
+$s_plugin_FormCaptcha_action_update = 'Update Settings';
+
+$s_plugin_FormCaptcha_no_response = 'Please complete the verification challenge before submitting the form.';
+$s_plugin_FormCaptcha_verify_failed = 'We could not verify that you are human. Please try again.';

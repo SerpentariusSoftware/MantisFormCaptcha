@@ -1,0 +1,33 @@
+<?php
+/**
+ * Language File - German (auto-translated)
+ */
+
+$s_plugin_FormCaptcha_title = 'Formular-Captcha';
+$s_plugin_FormCaptcha_description = 'Fügt den Anmelde-, Registrierungs-, Passwort-vergessen- und Passwort-ändern-Formularen eine Cloudflare-Turnstile- / hCaptcha- / Google-reCAPTCHA-Überprüfung hinzu.';
+
+$s_plugin_FormCaptcha_config_title = 'Formular-Captcha-Konfiguration';
+$s_plugin_FormCaptcha_provider = 'Captcha-Anbieter';
+$s_plugin_FormCaptcha_provider_turnstile = 'Cloudflare Turnstile';
+$s_plugin_FormCaptcha_provider_hcaptcha = 'hCaptcha';
+$s_plugin_FormCaptcha_provider_recaptcha = 'Google reCAPTCHA';
+
+$s_plugin_FormCaptcha_turnstile_site_key = 'Turnstile Site Key';
+$s_plugin_FormCaptcha_turnstile_secret_key = 'Turnstile Secret Key';
+$s_plugin_FormCaptcha_hcaptcha_site_key = 'hCaptcha Site Key';
+$s_plugin_FormCaptcha_hcaptcha_secret_key = 'hCaptcha Secret Key';
+$s_plugin_FormCaptcha_recaptcha_site_key = 'reCAPTCHA Site Key';
+$s_plugin_FormCaptcha_recaptcha_secret_key = 'reCAPTCHA Secret Key';
+
+$s_plugin_FormCaptcha_enable_login = 'Im Anmeldeformular aktivieren';
+$s_plugin_FormCaptcha_enable_register = 'Im Registrierungsformular aktivieren';
+$s_plugin_FormCaptcha_enable_password_change = 'Im Passwort-ändern-Formular aktivieren';
+$s_plugin_FormCaptcha_enable_lost_password = 'Im Passwort-vergessen-Formular aktivieren';
+
+$s_plugin_FormCaptcha_option_on = 'AN';
+$s_plugin_FormCaptcha_option_off = 'AUS';
+
+$s_plugin_FormCaptcha_action_update = 'Einstellungen aktualisieren';
+
+$s_plugin_FormCaptcha_no_response = 'Bitte schließen Sie die Überprüfung ab, bevor Sie das Formular absenden.';
+$s_plugin_FormCaptcha_verify_failed = 'Wir konnten nicht bestätigen, dass Sie ein Mensch sind. Bitte versuchen Sie es erneut.';

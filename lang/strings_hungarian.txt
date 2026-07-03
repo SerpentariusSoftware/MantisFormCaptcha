@@ -1,0 +1,33 @@
+<?php
+/**
+ * Language File - Hungarian (auto-translated)
+ */
+
+$s_plugin_FormCaptcha_title = 'Űrlap Captcha';
+$s_plugin_FormCaptcha_description = 'Cloudflare Turnstile / hCaptcha / Google reCAPTCHA ellenőrzést ad a bejelentkezési, regisztrációs, elfelejtett jelszó és jelszóváltoztatási űrlapokhoz.';
+
+$s_plugin_FormCaptcha_config_title = 'Űrlap Captcha beállításai';
+$s_plugin_FormCaptcha_provider = 'Captcha szolgáltató';
+$s_plugin_FormCaptcha_provider_turnstile = 'Cloudflare Turnstile';
+$s_plugin_FormCaptcha_provider_hcaptcha = 'hCaptcha';
+$s_plugin_FormCaptcha_provider_recaptcha = 'Google reCAPTCHA';
+
+$s_plugin_FormCaptcha_turnstile_site_key = 'Turnstile Site Key';
+$s_plugin_FormCaptcha_turnstile_secret_key = 'Turnstile Secret Key';
+$s_plugin_FormCaptcha_hcaptcha_site_key = 'hCaptcha Site Key';
+$s_plugin_FormCaptcha_hcaptcha_secret_key = 'hCaptcha Secret Key';
+$s_plugin_FormCaptcha_recaptcha_site_key = 'reCAPTCHA Site Key';
+$s_plugin_FormCaptcha_recaptcha_secret_key = 'reCAPTCHA Secret Key';
+
+$s_plugin_FormCaptcha_enable_login = 'Engedélyezés a bejelentkezési űrlapon';
+$s_plugin_FormCaptcha_enable_register = 'Engedélyezés a regisztrációs űrlapon';
+$s_plugin_FormCaptcha_enable_password_change = 'Engedélyezés a jelszóváltoztatási űrlapon';
+$s_plugin_FormCaptcha_enable_lost_password = 'Engedélyezés az elfelejtett jelszó űrlapon';
+
+$s_plugin_FormCaptcha_option_on = 'BE';
+$s_plugin_FormCaptcha_option_off = 'KI';
+
+$s_plugin_FormCaptcha_action_update = 'Beállítások mentése';
+
+$s_plugin_FormCaptcha_no_response = 'Kérjük, teljesítse az ellenőrzést az űrlap elküldése előtt.';
+$s_plugin_FormCaptcha_verify_failed = 'Nem sikerült ellenőriznünk, hogy Ön ember. Kérjük, próbálja újra.';

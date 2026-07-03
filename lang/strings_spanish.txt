@@ -1,0 +1,33 @@
+<?php
+/**
+ * Language File - Spanish (auto-translated)
+ */
+
+$s_plugin_FormCaptcha_title = 'Captcha de Formulario';
+$s_plugin_FormCaptcha_description = 'Añade un desafío de verificación Cloudflare Turnstile / hCaptcha / Google reCAPTCHA a los formularios de inicio de sesión, registro, contraseña olvidada y cambio de contraseña.';
+
+$s_plugin_FormCaptcha_config_title = 'Configuración de Captcha de Formulario';
+$s_plugin_FormCaptcha_provider = 'Proveedor de Captcha';
+$s_plugin_FormCaptcha_provider_turnstile = 'Cloudflare Turnstile';
+$s_plugin_FormCaptcha_provider_hcaptcha = 'hCaptcha';
+$s_plugin_FormCaptcha_provider_recaptcha = 'Google reCAPTCHA';
+
+$s_plugin_FormCaptcha_turnstile_site_key = 'Clave de Sitio de Turnstile';
+$s_plugin_FormCaptcha_turnstile_secret_key = 'Clave Secreta de Turnstile';
+$s_plugin_FormCaptcha_hcaptcha_site_key = 'Clave de Sitio de hCaptcha';
+$s_plugin_FormCaptcha_hcaptcha_secret_key = 'Clave Secreta de hCaptcha';
+$s_plugin_FormCaptcha_recaptcha_site_key = 'Clave de Sitio de reCAPTCHA';
+$s_plugin_FormCaptcha_recaptcha_secret_key = 'Clave Secreta de reCAPTCHA';
+
+$s_plugin_FormCaptcha_enable_login = 'Activar en el Formulario de Inicio de Sesión';
+$s_plugin_FormCaptcha_enable_register = 'Activar en el Formulario de Registro';
+$s_plugin_FormCaptcha_enable_password_change = 'Activar en el Formulario de Cambio de Contraseña';
+$s_plugin_FormCaptcha_enable_lost_password = 'Activar en el Formulario de Contraseña Olvidada';
+
+$s_plugin_FormCaptcha_option_on = 'ACTIVADO';
+$s_plugin_FormCaptcha_option_off = 'DESACTIVADO';
+
+$s_plugin_FormCaptcha_action_update = 'Actualizar Configuración';
+
+$s_plugin_FormCaptcha_no_response = 'Por favor, complete el desafío de verificación antes de enviar el formulario.';
+$s_plugin_FormCaptcha_verify_failed = 'No pudimos verificar que usted es humano. Por favor, inténtelo de nuevo.';
