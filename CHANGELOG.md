@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Updates plugin author and website metadata.
+
 ## 1.0.0
 
 Initial release.

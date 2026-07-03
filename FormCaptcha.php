@@ -157,14 +157,14 @@ class FormCaptchaPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config_page';
 
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 		$this->requires = array(
 			'MantisCore' => '2.20.0',
 		);
 
-		$this->author = 'MantisBT Local';
+		$this->author = 'Herczeg Szilard @ Serpentarius';
 		$this->contact = 'admin@mantis.local';
-		$this->url = 'https://mantisbt.org';
+		$this->url = 'https://serpentarius.hu/';
 	}
 
 	/**
