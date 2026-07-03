@@ -26,7 +26,3 @@ Initial release.
   and secret keys, and per-form toggles.
 - Translations: English, Spanish, German, Hungarian.
 
-Note: this plugin was initially prototyped under the name
-`TwoFactorCaptcha` before being renamed to `FormCaptcha` (a more accurate
-name — it's a captcha/bot-check layer, not TOTP-style two-factor
-authentication) prior to its first public release.
