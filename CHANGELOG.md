@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.4
+
+- Fixes the 1.0.3 Turnstile desktop-sizing change never actually taking
+  effect: it used an inline `<script>`, which MantisBT's default CSP
+  (`script-src 'self'`, no `'unsafe-inline'`, no nonce) silently blocks.
+  The size-detection logic now ships as a same-origin plugin file
+  (`files/turnstile-size.js`, served via `plugin_file()`), which
+  `script-src 'self'` already allows.
+
 ## 1.0.3
 
 - Cloudflare Turnstile widget now switches from `compact` (150x140, suited

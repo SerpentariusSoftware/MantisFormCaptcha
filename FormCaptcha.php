@@ -165,7 +165,7 @@ class FormCaptchaPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config_page';
 
-		$this->version = '1.0.3';
+		$this->version = '1.0.4';
 		$this->requires = array(
 			'MantisCore' => '2.20.0',
 		);
@@ -324,13 +324,24 @@ class FormCaptchaPlugin extends MantisPlugin {
 			return '';
 		}
 
-		$t_provider = $this->provider_config( plugin_config_get( 'provider' ) );
-		# defer only (no async): the widget markup's inline script (see
-		# widget_markup()) relies on running before this script scans the
-		# DOM and renders the widget, and a deferred script is guaranteed to
-		# run after the page's own inline scripts, whereas async could win
-		# the race and render before that override applies.
-		return '<script src="' . $t_provider['script_url'] . '" defer></script>' . "\n";
+		$t_key = plugin_config_get( 'provider' );
+		$t_provider = $this->provider_config( $t_key );
+		$t_resources = '';
+
+		if( $t_key === 'turnstile' ) {
+			# Must be a same-origin file, not an inline <script>: MantisBT's
+			# CSP script-src is 'self' only (no 'unsafe-inline', no nonce
+			# support), so an inline script here would just be silently
+			# blocked by the browser. Must also come before the Turnstile
+			# API script tag below - both are 'defer', so document order is
+			# execution order, and Turnstile only reads data-size at the
+			# moment it scans and renders each widget.
+			$t_resources .= '<script src="' . plugin_file( 'turnstile-size.js' ) . '" defer></script>' . "\n";
+		}
+
+		$t_resources .= '<script src="' . $t_provider['script_url'] . '" defer></script>' . "\n";
+
+		return $t_resources;
 	}
 
 	/**
@@ -349,8 +360,7 @@ class FormCaptchaPlugin extends MantisPlugin {
 	 * @return string
 	 */
 	private function widget_markup() {
-		$t_key = plugin_config_get( 'provider' );
-		$t_provider = $this->provider_config( $t_key );
+		$t_provider = $this->provider_config( plugin_config_get( 'provider' ) );
 		$t_site_key = plugin_config_get( $t_provider['site_key_option'] );
 		if( is_blank( $t_site_key ) ) {
 			return '';
@@ -361,28 +371,14 @@ class FormCaptchaPlugin extends MantisPlugin {
 		# injected next to, instead of forcing a line break before it.
 		# size=compact is used for the same reason: the default/normal
 		# widget size is ~300px wide, which doesn't leave enough room next
-		# to the submit button in these forms' ~450px-wide containers.
+		# to the submit button in these forms' ~450px-wide containers. For
+		# Turnstile, on_layout_resources() loads files/turnstile-size.js,
+		# which upgrades this to "normal" once the viewport is wide enough
+		# for that to look right instead of cramped.
 		$t_style = 'display:inline-block;vertical-align:middle;margin-right:10px;';
 
-		$t_widget = '<div class="' . $t_provider['widget_class'] . '" data-sitekey="'
+		return '<div class="' . $t_provider['widget_class'] . '" data-sitekey="'
 			. string_attribute( $t_site_key ) . '" data-size="compact" style="' . $t_style . '"></div>';
-
-		if( $t_key === 'turnstile' ) {
-			# Turnstile's compact size (150x140, icon stacked above the
-			# text) is the right shape when it wraps onto its own line on a
-			# narrow viewport, but looks like an oddly tall block next to
-			# the submit button once there's enough width for a normal
-			# desktop layout. Switch to Turnstile's normal size (300x65,
-			# short and wide) above that breakpoint. This has to happen via
-			# an inline script rather than CSS, since compact vs. normal is
-			# a different widget layout Cloudflare renders server-side, not
-			# something a stylesheet can reshape after the fact.
-			$t_widget .= '<script>(function(){var e=document.currentScript.previousElementSibling;'
-				. 'if(window.matchMedia&&window.matchMedia("(min-width:768px)").matches){'
-				. 'e.setAttribute("data-size","normal");}})();</script>';
-		}
-
-		return $t_widget;
 	}
 
 	/**
