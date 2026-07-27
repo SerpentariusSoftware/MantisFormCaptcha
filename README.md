@@ -1,6 +1,6 @@
 # MantisBT Form Captcha Plugin
 
-**Version 1.0.2**
+**Version 1.0.3**
 
 Adds a Cloudflare Turnstile, hCaptcha, or Google reCAPTCHA verification
 challenge to MantisBT's login, registration, lost-password, and

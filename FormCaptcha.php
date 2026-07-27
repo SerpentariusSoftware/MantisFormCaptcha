@@ -165,7 +165,7 @@ class FormCaptchaPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config_page';
 
-		$this->version = '1.0.2';
+		$this->version = '1.0.3';
 		$this->requires = array(
 			'MantisCore' => '2.20.0',
 		);
@@ -325,7 +325,12 @@ class FormCaptchaPlugin extends MantisPlugin {
 		}
 
 		$t_provider = $this->provider_config( plugin_config_get( 'provider' ) );
-		return '<script src="' . $t_provider['script_url'] . '" async defer></script>' . "\n";
+		# defer only (no async): the widget markup's inline script (see
+		# widget_markup()) relies on running before this script scans the
+		# DOM and renders the widget, and a deferred script is guaranteed to
+		# run after the page's own inline scripts, whereas async could win
+		# the race and render before that override applies.
+		return '<script src="' . $t_provider['script_url'] . '" defer></script>' . "\n";
 	}
 
 	/**
@@ -344,7 +349,8 @@ class FormCaptchaPlugin extends MantisPlugin {
 	 * @return string
 	 */
 	private function widget_markup() {
-		$t_provider = $this->provider_config( plugin_config_get( 'provider' ) );
+		$t_key = plugin_config_get( 'provider' );
+		$t_provider = $this->provider_config( $t_key );
 		$t_site_key = plugin_config_get( $t_provider['site_key_option'] );
 		if( is_blank( $t_site_key ) ) {
 			return '';
@@ -358,8 +364,25 @@ class FormCaptchaPlugin extends MantisPlugin {
 		# to the submit button in these forms' ~450px-wide containers.
 		$t_style = 'display:inline-block;vertical-align:middle;margin-right:10px;';
 
-		return '<div class="' . $t_provider['widget_class'] . '" data-sitekey="'
+		$t_widget = '<div class="' . $t_provider['widget_class'] . '" data-sitekey="'
 			. string_attribute( $t_site_key ) . '" data-size="compact" style="' . $t_style . '"></div>';
+
+		if( $t_key === 'turnstile' ) {
+			# Turnstile's compact size (150x140, icon stacked above the
+			# text) is the right shape when it wraps onto its own line on a
+			# narrow viewport, but looks like an oddly tall block next to
+			# the submit button once there's enough width for a normal
+			# desktop layout. Switch to Turnstile's normal size (300x65,
+			# short and wide) above that breakpoint. This has to happen via
+			# an inline script rather than CSS, since compact vs. normal is
+			# a different widget layout Cloudflare renders server-side, not
+			# something a stylesheet can reshape after the fact.
+			$t_widget .= '<script>(function(){var e=document.currentScript.previousElementSibling;'
+				. 'if(window.matchMedia&&window.matchMedia("(min-width:768px)").matches){'
+				. 'e.setAttribute("data-size","normal");}})();</script>';
+		}
+
+		return $t_widget;
 	}
 
 	/**

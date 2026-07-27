@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3
+
+- Cloudflare Turnstile widget now switches from `compact` (150x140, suited
+  to narrow/mobile layouts) to `normal` (300x65) on viewports at least
+  768px wide, instead of always rendering as `compact`. Fixes the widget
+  looking like an oddly tall block next to the submit button on desktop.
+  Only affects the Turnstile provider; hCaptcha and reCAPTCHA are
+  unchanged.
+
 ## 1.0.2
 
 - Fixes `verify.php` (the account-activation / lost-password-reset
