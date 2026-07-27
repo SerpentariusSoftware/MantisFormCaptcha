@@ -105,6 +105,14 @@ class FormCaptchaPlugin extends MantisPlugin {
 			'form_id' => 'account-update-form',
 			'flag' => 'enable_password_change',
 		),
+		# verify.php renders the same account-update-form (posting to
+		# account_update.php) used to activate a new account or complete a
+		# lost-password reset, so it needs the widget too, gated by the same
+		# flag that already governs account_update.php's enforcement.
+		'verify.php' => array(
+			'form_id' => 'account-update-form',
+			'flag' => 'enable_password_change',
+		),
 	);
 
 	/**
@@ -157,7 +165,7 @@ class FormCaptchaPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config_page';
 
-		$this->version = '1.0.1';
+		$this->version = '1.0.2';
 		$this->requires = array(
 			'MantisCore' => '2.20.0',
 		);
@@ -297,7 +305,10 @@ class FormCaptchaPlugin extends MantisPlugin {
 			return $p_buffer;
 		}
 
-		$t_pattern = '/(<input\b[^>]*\btype=["\']submit["\'][^>]*\/?>)/i';
+		# verify.php renders its submit control as <button type="submit">
+		# rather than the <input type="submit"> every other target form
+		# uses, so both element types have to be matched here.
+		$t_pattern = '/(<(?:input|button)\b[^>]*\btype=["\']submit["\'][^>]*\/?>)/i';
 		$t_result = preg_replace( $t_pattern, $this->cached_widget_html . '$1', $p_buffer, 1 );
 
 		return $t_result !== null ? $t_result : $p_buffer;

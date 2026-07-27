@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.2
+
+- Fixes `verify.php` (the account-activation / lost-password-reset
+  confirmation page, which posts to `account_update.php`) missing the
+  captcha widget entirely: it wasn't in the plugin's list of pages to
+  inject into, so users landing there from a signup or lost-password email
+  would get blocked by `account_update.php`'s enforcement with no widget
+  to solve. Also handles that page's submit control being a `<button>`
+  rather than an `<input>`, which the injection logic didn't previously
+  match.
+
 ## 1.0.1
 
 - Updates plugin author and website metadata.
